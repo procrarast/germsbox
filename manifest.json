@@ -1,0 +1,36 @@
+{
+	"manifest_version": 2,
+	"name": "Germsbox",
+	"version": "1.0",
+	"permissions": ["activeTab", "storage"],
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	}, 
+	"content_scripts": [
+		{
+			"matches": ["https://germs.io/*"],
+			"js": ["content.js"]
+		}
+	],
+	"browser_action": {
+		"default_popup": "popup.html",
+		"default_icon": {
+			"48": "gsDuh-48.png",
+			"96": "gsDuh-96.png"
+		}
+	},
+	"icons": {
+		"48": "icon.png"
+	},
+	"commands": {
+		"switchTabs": {
+			"suggested_key": {
+				"default": "a"
+			},
+			"description": "Simple and configurable Germs.io multiboxing script"
+		}
+	}
+	
+}
+
