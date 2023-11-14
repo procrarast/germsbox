@@ -1,5 +1,9 @@
 console.log("Loading background.js");
 
+function setDelay() {
+	window.changeSetting('animationDelay', 4);
+}
+
 function switchTabs() {
 	console.log("Switching tabs");
 	
@@ -18,7 +22,11 @@ function switchTabs() {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.action === "switchTabs") {
+	if (request.action === "setDelay") {
+		setDelay();
+	}
+	
+	if (request.action === "switchTabs") {
         switchTabs();
     }
 });
