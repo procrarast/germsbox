@@ -1,17 +1,26 @@
-chrome.commands.onCommand.addListener(function (command) {
-	if(command === "switchTabs") {
-		getGermsTabs(function (tabs) {
-			if (tabs) {
-				getActiveTabId(function (currentTabId) {
-					const nextTabId = getNextTabId(tabs, currentTabId);
-					setActiveTab(nextTabId);
-				});
-			} else {
-				// TODO: Perhaps open up a new tab or set a config to do so
-				console.log("Not enough tabs found.");
-			}
-		});
-	}	
+console.log("Loading background.js");
+
+function switchTabs() {
+	console.log("Switching tabs");
+	
+	getGermsTabs(function (tabs) {
+		if (tabs) {
+			getActiveTabId(function (currentTabId) {
+				const nextTabId = getNextTabId(tabs, currentTabId);
+				setActiveTab(nextTabId);
+			});
+		} else {
+			// TODO: Perhaps open up a new tab or set a config to do so
+			console.log("Not enough tabs found.");
+		}
+	});
+
+}
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.action === "switchTabs") {
+        switchTabs();
+    }
 });
 
 /* Get array of tabs with a certain URL if there are two of them. Return false otherwise. */
@@ -40,3 +49,4 @@ function getNextTabId(tabs, currentTabId) {
 function setActiveTab(nextTabId) {
 	chrome.tabs.update(nextTabId, {active: true});
 }
+
