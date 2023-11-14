@@ -1,16 +1,25 @@
 {
 	"manifest_version": 2,
-	"name": "Germsbox",
+	"name": "Germs Switcher",
 	"version": "1.0",
-	"permissions": ["activeTab", "storage"],
+	"permissions": [
+		"activeTab",
+		"storage"
+	],
 	"background": {
-		"scripts": ["background.js"],
+		"scripts": [
+			"background.js"
+		],
 		"persistent": false
-	}, 
+	},
 	"content_scripts": [
 		{
-			"matches": ["https://germs.io/*"],
-			"js": ["content.js"]
+			"matches": [
+				"https://germs.io/*"
+			],
+			"js": [
+				"content.js"
+			]
 		}
 	],
 	"browser_action": {
@@ -21,7 +30,8 @@
 		}
 	},
 	"icons": {
-		"48": "icon.png"
+		"48": "gsDuh-48.png",
+		"96": "gsDuh-96.png"
 	},
 	"commands": {
 		"switchTabs": {
@@ -31,6 +41,4 @@
 			"description": "Simple and configurable Germs.io multiboxing script"
 		}
 	}
-	
 }
-
