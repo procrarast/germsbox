@@ -1,11 +1,5 @@
 console.log("Loading background.js");
 
-chrome.runtime.onMessage.addListener(function(request/*, sender, sendResponse*/) {
-	if (request.action === "switchWindows") {
-        switchWindows();
-    }
-});
-
 function switchWindows() {
     console.log("Switching windows");
 
@@ -17,6 +11,7 @@ function switchWindows() {
             });
         } else {
             console.log("Not enough windows found.");
+			openGermsWindow();
         }
     });
 }
@@ -34,7 +29,6 @@ function getGermsWindows(callback) {
         }
     });
 }
-
 
 function openGermsWindow() {
 	//TODO: Make it open a window of the same party URLa
@@ -57,3 +51,9 @@ function setActiveWindow(nextWindowId) {
     chrome.windows.update(nextWindowId, {focused: true});
 }
 
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+	console.log("Message recieved");
+	if (request.action === "switchTabs") {
+        switchWindows();
+    }
+});
