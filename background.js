@@ -10,7 +10,7 @@ function switchWindows() {
                 setActiveWindow(nextWindowId);
             });
         } else {
-            console.log("Not enough windows found.");
+            console.log("No other window found.");
 			openGermsWindow();
         }
     });
@@ -31,10 +31,11 @@ function getGermsWindows(callback) {
 }
 
 function openGermsWindow() {
-	//TODO: Make it open a window of the same party URLa
+	//TODO: Make it open a window of the same party URL
 	console.log("Opening new window");
 	chrome.windows.create({url: "https://germs.io/"});
 }
+
 /* Get the name of the currently active tab */
 function getActiveWindowId(callback) {
     chrome.windows.getCurrent({}, function(currentWindow) {
