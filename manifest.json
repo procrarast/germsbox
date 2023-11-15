@@ -34,7 +34,7 @@
 		"96": "gsDuh-96.png"
 	},
 	"commands": {
-		"switchTabs": {
+		"switchWindows": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+A"
 			},
