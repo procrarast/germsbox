@@ -4,36 +4,38 @@ function switchWindows() {
     console.log("Switching windows");
 
     getGermsWindows(function (windows) {
-        if (windows) {
+        if (windows.length === 2) {
+            // Switch between two windows
             getActiveWindowId(function (currentWindowId) {
                 const nextWindowId = getNextWindowId(windows, currentWindowId);
-                setActiveWindow(nextWindowId);
+                setFocusedWindow(nextWindowId);
+            });
+        } else if (windows.length === 1) {
+            // Open same URL to add to same party
+            console.log("No other window found.");
+            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                openWindow(tabs[0].url);
             });
         } else {
-            console.log("No other window found.");
-			openGermsWindow();
+            console.log("3+ windows are not supported.");
         }
     });
 }
 
-/* Get array of tabs with a certain URL if there are two of them. Return false otherwise. */
+/* Get array of two germs tabs. Return false otherwise. */
 function getGermsWindows(callback) {
-    chrome.windows.getAll({populate: true}, function (windows) {
+    chrome.windows.getAll({ populate: true }, function (windows) {
+        // Filter for germs.io tabs
         let germsWindows = windows.filter(win => 
             win.tabs.some(tab => tab.url && tab.url.includes('https://germs.io')));
-
-        if (germsWindows.length === 2) {
-            callback(germsWindows);
-        } else {
-            callback(false);
-        }
+        callback(germsWindows);
     });
 }
 
-function openGermsWindow() {
+function openWindow(url) {
 	//TODO: Make it open a window of the same party URL
 	console.log("Opening new window");
-	chrome.windows.create({url: "https://germs.io/"});
+	chrome.windows.create({ url: url });
 }
 
 /* Get the name of the currently active tab */
@@ -48,7 +50,7 @@ function getNextWindowId(windows, currentWindowId) {
     return windows[0].id === currentWindowId ? windows[1].id : windows[0].id;
 }
 
-function setActiveWindow(nextWindowId) {
+function setFocusedWindow(nextWindowId) {
     chrome.windows.update(nextWindowId, {focused: true});
 }
 
