@@ -1,22 +1,35 @@
 console.log("Running content.js");
 
-document.addEventListener('keydown', function (event) {
-    console.log("Keydown recieved");
-    if (event.key === "a") {
-        console.log("Sending chrome api message");
-        feedKeyup();
-        chrome.runtime.sendMessage({ action: "switchTabs" });
-    } else if (event.key === "q") {
-        pressKey(69);
-    }
-});
+window.addEventListener('keydown', keydown);
+window.addEventListener('keyup', keyup);
 
-function feedKeyup(){
-    console.log("Sending keyup");
-    document.dispatchEvent(new KeyboardEvent('keyup', { which: 69 }));
+function keyup(event) {
+    
 }
 
-function pressKey(keycode) {
-    document.dispatchEvent(new KeyboardEvent('keydown', { which: keycode }));
-    document.dispatchEvent(new KeyboardEvent('keyup', { which: keycode }));
+function keydown(event) {
+    if (event.key === "q"){
+        console.log("Sending spacebar");
+        $("body").trigger($.Event("keydown", { keyCode: 32})); 
+        $("body").trigger($.Event("keyup", { keyCode: 32}));
+        /*sendKey(32); // space*/
+    }
+    else if (event.key === "a") {
+        console.log("Sending chrome api message");
+        sendKeyUp(69);
+        chrome.runtime.sendMessage({ action: "switchTabs" });
+    }
+}
+
+function sendKey(keycode) {
+    $("body").trigger($.Event("keydown", { keyCode: keycode}));
+    $("body").trigger($.Event("keyup", { keyCode: keycode}));
+}
+
+function sendKeyUp(keycode) {
+    $("body").trigger($.Event("keyup", { keyCode: keycode}));
+}
+
+function sendKeyDown(keycode) {
+    $("body").trigger($.Event("keydown", { keyCode: keycode}));
 }
