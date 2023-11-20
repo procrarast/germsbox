@@ -4,7 +4,7 @@ window.addEventListener('keydown', keydown);
 window.addEventListener('keyup', keyup);
 
 function keyup(event) {
-    
+
 }
 
 function keydown(event) {
@@ -14,7 +14,7 @@ function keydown(event) {
         $("body").trigger($.Event("keyup", { keyCode: 32}));
         /*sendKey(32); // space*/
     }
-    else if (event.key === "a") {
+    else if (event.key === "z") {
         console.log("Sending chrome api message");
         sendKeyUp(69);
         chrome.runtime.sendMessage({ action: "switchTabs" });
