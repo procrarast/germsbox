@@ -9,15 +9,11 @@ There is apparently a background rendering quirk where switching between fullscr
 # Installation
 This extension's source code is what is referred to as an "unpacked extension," since it's not built into a clean package for the Chrome store. As this is still in development, we need to change some settings to allow your computer to run this source code.
 1. Clone the repo.
-
 This can be done in a couple ways. You can download as .zip, or run a `git clone https://github.com/procrarast/germsbox.git` command in your terminal.
-
 2. Navigate to your Chromium browser's search bar and go to `chrome://extensions.`
-
 3. Within the extensions page, there is a Developer Mode button. Make sure it's checked, and click on "Load Unpacked."
-  
 4. Select the "germsbox" folder.
-
+ 
 You should be good from here. Make sure it doesn't throw any errors and try running a new Germs tab, and set a keycode in the settings popup.
 
 # Temporary Settings
