@@ -27,12 +27,12 @@ function keydown(event) {
     console.log("Key recieved");
     if (event.keyCode === 0) {
         console.log("Sending spacebar");
-        sendKey(32); //space
+        //sendKey(32); //space
     }
-    
+
     else if (event.keyCode == switcherKeycode && switcherEnabled) {
         console.log("Sending chrome api message");
-        sendKeyUp(69);
+        //sendKeyUp(69);
         chrome.runtime.sendMessage({ action: "switchWindows" });
     }
 }
@@ -49,7 +49,7 @@ function updateSettings() {
 }
 
 /* None of these functions work. Have to write a script injector */
-
+/*
 function sendKey(keycode) {
     $("body").trigger($.Event("keydown", { keyCode: keycode}));
     $("body").trigger($.Event("keyup", { keyCode: keycode}));
@@ -62,3 +62,4 @@ function sendKeyUp(keycode) {
 function sendKeyDown(keycode) {
     $("body").trigger($.Event("keydown", { keyCode: keycode}));
 }
+*/
