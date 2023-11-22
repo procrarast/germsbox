@@ -3,7 +3,7 @@ Simple multibox Chromium extension for Germs.io.
 
 Set the switcher key in the popup to switch between Germs.io windows. If one is not already open, one will be opened for you, with the same party URL.
 
-There is apparently a background rendering quirk where switching between fullscreened windows in the Windows operating system. Not yet tested in Linux, but for the time being, please run the game in windowed mode for the best experience.
+There is apparently a background rendering quirk where switching between fullscreened windows in the Windows operating system causes bright flash effect. Not yet tested in Linux, but for the time being, please run the game in windowed mode for the best experience.
 
 
 # Installation
